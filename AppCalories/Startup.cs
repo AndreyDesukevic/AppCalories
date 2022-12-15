@@ -1,6 +1,8 @@
+using AppCalories.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +25,9 @@ namespace AppCalories
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DatabaseAppCalories;Integrated Security=True;";
+            services.AddDbContext<WebDbContext>(x => x.UseSqlServer(connectString));
+
             services.AddControllersWithViews();
         }
 
