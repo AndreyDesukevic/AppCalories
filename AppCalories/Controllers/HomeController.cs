@@ -1,4 +1,5 @@
-﻿using AppCalories.Models;
+﻿using AppCalories.DAL.Interfaces;
+using AppCalories.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,17 +10,22 @@ using System.Threading.Tasks;
 
 namespace AppCalories.Controllers
 {
+    
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepository;
+       
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductRepository productRepository)
         {
-            _logger = logger;
+           
+            _productRepository = productRepository;
         }
 
-        public IActionResult Index()
+        public  async Task<IActionResult> Index()
         {
+            var response = await _productRepository.Select();
+
             return View();
         }
 
