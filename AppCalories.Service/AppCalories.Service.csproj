@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppCalories.DAL\AppCalories.DAL.csproj" />
+    <ProjectReference Include="..\AppCalories.Domain\AppCalories.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,14 +3,16 @@ using AppCalories.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppCalories.DAL.Migrations
 {
     [DbContext(typeof(WebDbContext))]
-    partial class WebDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221220115012_AddCollimPropertyProduct")]
+    partial class AddCollimPropertyProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,19 +28,19 @@ namespace AppCalories.DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("Calories")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Carbohydrates")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(38,2)");
 
                     b.Property<decimal>("Fats")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(38,2)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Proteins")
-                        .HasColumnType("decimal(10,2)");
+                        .HasColumnType("decimal(38,2)");
 
                     b.HasKey("Id");
 

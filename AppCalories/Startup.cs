@@ -1,6 +1,8 @@
 using AppCalories.DAL;
 using AppCalories.DAL.Interfaces;
 using AppCalories.DAL.Repositories;
+using AppCalories.Service.Implementations;
+using AppCalories.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,7 @@ namespace AppCalories
             services.AddDbContext<WebDbContext>(x => x.UseSqlServer(connectString));
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
 
             services.AddControllersWithViews();
         }

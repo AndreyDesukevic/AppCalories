@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCalories", "AppCalories\AppCalories.csproj", "{855048F0-AA0E-4F64-9BA5-78B47A39F689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCalories", "AppCalories\AppCalories.csproj", "{855048F0-AA0E-4F64-9BA5-78B47A39F689}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCalories.Domain", "AppCalories.Domain\AppCalories.Domain.csproj", "{72689907-C410-42E7-8D86-5E5BDED6D437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCalories.Domain", "AppCalories.Domain\AppCalories.Domain.csproj", "{72689907-C410-42E7-8D86-5E5BDED6D437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCalories.DAL", "AppCalories.DAL\AppCalories.DAL.csproj", "{73BB2156-4264-4566-BAFC-19CB1C6CE5B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCalories.DAL", "AppCalories.DAL\AppCalories.DAL.csproj", "{73BB2156-4264-4566-BAFC-19CB1C6CE5B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppCalories.Service", "AppCalories.Service\AppCalories.Service.csproj", "{F9043466-F102-49E7-886D-1E92C8E872C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{73BB2156-4264-4566-BAFC-19CB1C6CE5B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73BB2156-4264-4566-BAFC-19CB1C6CE5B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73BB2156-4264-4566-BAFC-19CB1C6CE5B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9043466-F102-49E7-886D-1E92C8E872C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9043466-F102-49E7-886D-1E92C8E872C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9043466-F102-49E7-886D-1E92C8E872C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9043466-F102-49E7-886D-1E92C8E872C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
