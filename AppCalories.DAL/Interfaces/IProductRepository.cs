@@ -9,6 +9,6 @@ namespace AppCalories.DAL.Interfaces
 {
     public interface IProductRepository : IBaseRepository<Product>
     {
-        Product GetByName(string name);
+        Task<Product> GetByName(string name);
     }
 }

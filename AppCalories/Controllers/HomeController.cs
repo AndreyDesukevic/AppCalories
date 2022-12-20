@@ -13,23 +13,13 @@ namespace AppCalories.Controllers
     
     public class HomeController : Controller
     {
-        private readonly IProductRepository _productRepository;
-       
-
-        public HomeController(IProductRepository productRepository)
+        
+        public IActionResult Privacy()
         {
-           
-            _productRepository = productRepository;
-        }
-
-        public  async Task<IActionResult> Index()
-        {
-            var response = await _productRepository.Select();
-
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return View();
         }

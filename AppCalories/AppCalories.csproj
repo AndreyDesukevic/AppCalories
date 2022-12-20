@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppCalories.DAL\AppCalories.DAL.csproj" />
+    <ProjectReference Include="..\AppCalories.Service\AppCalories.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,25 +18,25 @@ namespace AppCalories.DAL.Repositories
             _webDbContext = webDbContext;
         }
 
-        public bool Create(Product entity)
+        public async Task<bool> Create(Product entity)
         {
-            throw new NotImplementedException();
+            await _webDbContext.Products.AddAsync(entity);
+            await _webDbContext.SaveChangesAsync();
+            return true;
         }
 
-        public bool Delete(Product entity)
-        {
-            throw new NotImplementedException();
+        public async Task<bool> Delete(Product entity)
+        { 
+            _webDbContext.Products.Remove(entity);
+            await _webDbContext.SaveChangesAsync();
+            return true;
         }
+        
+        public async Task<Product> Get(int id) => await _webDbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
+        
 
-        public Product Get(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task <Product> GetByName(string name)=>await _webDbContext.Products.FirstOrDefaultAsync(x => x.Name == name);
 
-        public Product GetByName(string name)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<List<Product>> Select()
         {

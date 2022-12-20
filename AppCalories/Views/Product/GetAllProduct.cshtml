@@ -1,0 +1,15 @@
+﻿@using AppCalories.Domain.EFStuff.Models;
+@using AppCalories.Domain.Response;
+@model BaseResponse<IEnumerable<Product>>;
+@{
+}
+
+@foreach( var product in Model.Data)
+{
+    <div>
+    <div>@product.Name</div>
+    <div>@product.Proteins</div>
+    <div>@product.Carbohydrates</div>
+    <div>@product.Fats</div>
+    </div>
+}
