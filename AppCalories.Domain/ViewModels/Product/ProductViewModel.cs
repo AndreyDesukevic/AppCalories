@@ -8,6 +8,7 @@ namespace AppCalories.Domain.ViewModels.Product
 {
     public class ProductViewModel
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public decimal Calories { get; set; }
         public decimal Proteins { get; set; }
