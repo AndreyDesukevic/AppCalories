@@ -71,8 +71,17 @@ namespace AppCalories.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (productViewModel.Id == 0)
+                {
+                    await _productService.CreateProduct(productViewModel);
+                }
+                else
+                {
+                    await _productService.Edit(productViewModel.Id, productViewModel);
+                }
 
             }
+            return RedirectToAction("GetProduct");
         }
 
 

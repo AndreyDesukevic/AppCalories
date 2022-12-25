@@ -42,5 +42,12 @@ namespace AppCalories.DAL.Repositories
         {
            return await _webDbContext.Products.ToListAsync();
         }
+
+        public async Task<Product> Update(Product entity)
+        {
+            _webDbContext.Products.Update(entity);
+            await _webDbContext.SaveChangesAsync();
+            return entity;
+        }
     }
 }
