@@ -150,12 +150,44 @@ namespace AppCalories.Service.Implementations
             {
                 return new BaseResponse<ProductViewModel>()
                 {
-                    Description = $"[DeleteProduct]:{ex.Message}",
+                    Description = $"[CreateProduct]:{ex.Message}",
                     StatusCode = StatusCode.InternalServerError
 
                 };
             }
             return baseResponse;
+        }
+        public async Task<IBaseResponse<Product>> Edit(int id, ProductViewModel productViewModel)
+        {
+            var baseResponse = new BaseResponse<Product>();
+            try
+            {
+                var product = await _productRepository.Get(id);
+                if (product == null)
+                {
+                    baseResponse.StatusCode = StatusCode.ProductNotFound;
+                    baseResponse.Description = "Car not found";
+                    return baseResponse;
+                }
+                product.Name = productViewModel.Name;
+                product.Carbohydrates = productViewModel.Carbohydrates;
+                product.Fats = productViewModel.Fats;
+                product.Calories = productViewModel.Calories;
+                product.Proteins = productViewModel.Proteins;
+
+                await _productRepository.Update(product);
+
+                return baseResponse;
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<Product>()
+                {
+                    Description = $"[Edit]:{ex.Message}",
+                    StatusCode = StatusCode.InternalServerError
+
+                };
+            }
         }
     }
 }
