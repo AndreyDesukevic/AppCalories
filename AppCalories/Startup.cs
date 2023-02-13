@@ -1,6 +1,7 @@
 using AppCalories.DAL;
 using AppCalories.DAL.Interfaces;
 using AppCalories.DAL.Repositories;
+using AppCalories.Domain.EFStuff.Models;
 using AppCalories.Service.Implementations;
 using AppCalories.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -32,8 +33,8 @@ namespace AppCalories
             var connectString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DatabaseAppCalories;Integrated Security=True;";
             services.AddDbContext<WebDbContext>(x => x.UseSqlServer(connectString));
 
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductService, ProductService>();
+            services.InitializeRepositories();
+            services.InitializeServices();
 
             services.AddControllersWithViews();
         }

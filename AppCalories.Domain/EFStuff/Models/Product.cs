@@ -14,6 +14,7 @@ namespace AppCalories.Domain.EFStuff.Models
         public decimal Proteins { get; set; }
         public decimal Carbohydrates { get; set; }
         public decimal Fats { get; set; }
+        public byte[] Picture { get; set; }
 
     }
 }

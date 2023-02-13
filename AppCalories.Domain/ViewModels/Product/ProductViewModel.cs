@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,7 @@ namespace AppCalories.Domain.ViewModels.Product
         public decimal Proteins { get; set; }
         public decimal Carbohydrates { get; set; }
         public decimal Fats { get; set; }
+        public IFormFile Picture { get; set; }
+        public byte[] Image { get; set; }
     }
 }

@@ -11,6 +11,7 @@
             <th scope="col">Proteins</th>
             <th scope="col">Fats</th>
             <th scope="col">Carbohydrates</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
                 <td>@product.Proteins</td>
                 <td>@product.Fats</td>
                 <td>@product.Carbohydrates</td>
+                <td><a href="/Product/SaveProduct?id=@product.Id" class="nav-link px-2">Edit</a></td>
             </tr>
         }
     </tbody>

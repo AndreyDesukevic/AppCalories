@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AppCalories.DAL.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : IBaseRepository<Product>
     {
         private readonly WebDbContext _webDbContext;
 
@@ -18,29 +18,21 @@ namespace AppCalories.DAL.Repositories
             _webDbContext = webDbContext;
         }
 
-        public async Task<bool> Create(Product entity)
+        public async Task Create(Product entity)
         {
             await _webDbContext.Products.AddAsync(entity);
             await _webDbContext.SaveChangesAsync();
-            return true;
         }
 
-        public async Task<bool> Delete(Product entity)
+        public async Task Delete(Product entity)
         { 
             _webDbContext.Products.Remove(entity);
             await _webDbContext.SaveChangesAsync();
-            return true;
         }
-        
-        public async Task<Product> Get(int id) => await _webDbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
-        
 
-        public async Task <Product> GetByName(string name)=>await _webDbContext.Products.FirstOrDefaultAsync(x => x.Name == name);
-
-
-        public async Task<List<Product>> Select()
+        public IQueryable<Product> GetAll()
         {
-           return await _webDbContext.Products.ToListAsync();
+            return _webDbContext.Products;
         }
 
         public async Task<Product> Update(Product entity)

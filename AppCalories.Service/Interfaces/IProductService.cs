@@ -15,7 +15,7 @@ namespace AppCalories.Service.Interfaces
         Task<IBaseResponse<Product>> GetProduct(int id);
         Task<IBaseResponse<Product>> GetProductByName(string name);
         Task<IBaseResponse<bool>> DeleteProduct(int id);
-        Task<IBaseResponse<ProductViewModel>> CreateProduct(ProductViewModel productViewModel);
+        Task<IBaseResponse<ProductViewModel>> CreateProduct(ProductViewModel productViewModel, byte[] imageData);
         Task<IBaseResponse<Product>> Edit(int id,ProductViewModel productViewModel);
 
 

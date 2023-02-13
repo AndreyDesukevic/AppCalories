@@ -3,6 +3,7 @@ using AppCalories.Domain.ViewModels.Product;
 using AppCalories.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace AppCalories.Controllers
@@ -28,7 +29,7 @@ namespace AppCalories.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         public async Task<IActionResult> GetProduct(int id)
         {
             var response = await _productService.GetProduct(id);
@@ -40,7 +41,7 @@ namespace AppCalories.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var response = await _productService.DeleteProduct(id);
@@ -51,7 +52,7 @@ namespace AppCalories.Controllers
             return RedirectToAction("Error");
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> SaveProduct(int id)
         {
             if (id==0)
@@ -65,7 +66,7 @@ namespace AppCalories.Controllers
             }
             return RedirectToAction("Error");
         }
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> SaveProduct(ProductViewModel productViewModel)
         {
@@ -73,7 +74,12 @@ namespace AppCalories.Controllers
             {
                 if (productViewModel.Id == 0)
                 {
-                    await _productService.CreateProduct(productViewModel);
+                    byte[] imageData;
+                    using (var binaryReader = new BinaryReader(productViewModel.Picture.OpenReadStream()))
+                    {
+                        imageData= binaryReader.ReadBytes((int)productViewModel.Picture.Length);
+                    }
+                        await _productService.CreateProduct(productViewModel,imageData);
                 }
                 else
                 {

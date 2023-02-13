@@ -4,9 +4,11 @@ using AppCalories.Domain.Enum;
 using AppCalories.Domain.Response;
 using AppCalories.Domain.ViewModels.Product;
 using AppCalories.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +16,9 @@ namespace AppCalories.Service.Implementations
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IBaseRepository<Product> _productRepository;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IBaseRepository<Product> productRepository)
         {
             _productRepository = productRepository;
         }
@@ -26,7 +28,7 @@ namespace AppCalories.Service.Implementations
             var baseResponse = new BaseResponse<Product>();
             try
             {
-                var product = await _productRepository.Get(id);
+                var product = await _productRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (product == null)
                 {
                     baseResponse.Description = "Product not found";
@@ -53,7 +55,7 @@ namespace AppCalories.Service.Implementations
             var baseResponse = new BaseResponse<Product>();
             try
             {
-                var product = await _productRepository.GetByName(name);
+                var product = await _productRepository.GetAll().FirstOrDefaultAsync(x => x.Name == name);
                 if (product == null)
                 {
                     baseResponse.Description = "Product not found";
@@ -81,8 +83,8 @@ namespace AppCalories.Service.Implementations
 
             try
             {
-                var products = await _productRepository.Select();
-                if (products.Count() == 0)
+                var products = _productRepository.GetAll();
+                if (!products.Any())
                 {
                     baseResponse.Description = "Found 0 items";
                     baseResponse.StatusCode = StatusCode.OK;
@@ -108,8 +110,8 @@ namespace AppCalories.Service.Implementations
             var baseResponse = new BaseResponse<bool>();
             try
             {
-                var product = await _productRepository.Get(id);
-                if(product==null)
+                var product = await _productRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
+                if (product==null)
                 {
                     baseResponse.Description = "Product not found";
                     baseResponse.StatusCode = StatusCode.ProductNotFound;
@@ -129,18 +131,19 @@ namespace AppCalories.Service.Implementations
                 };
             }
         }
-        public async Task<IBaseResponse<ProductViewModel>> CreateProduct(ProductViewModel productViewModel)
+        public async Task<IBaseResponse<ProductViewModel>> CreateProduct(ProductViewModel productViewModel, byte[] imageData)
         {
             var baseResponse = new BaseResponse<ProductViewModel>();
             try
             {
                 var product = new Product()
                 {
-                    Name= productViewModel.Name,
-                    Calories= productViewModel.Calories,
-                    Proteins= productViewModel.Proteins,
-                    Carbohydrates= productViewModel.Carbohydrates,
-                    Fats= productViewModel.Fats
+                    Name = productViewModel.Name,
+                    Calories = productViewModel.Calories,
+                    Proteins = productViewModel.Proteins,
+                    Carbohydrates = productViewModel.Carbohydrates,
+                    Fats = productViewModel.Fats,
+                    Picture = imageData
                 };
 
                 await _productRepository.Create(product);
@@ -162,7 +165,7 @@ namespace AppCalories.Service.Implementations
             var baseResponse = new BaseResponse<Product>();
             try
             {
-                var product = await _productRepository.Get(id);
+                var product = await _productRepository.GetAll().FirstOrDefaultAsync(x=>x.Id==id);
                 if (product == null)
                 {
                     baseResponse.StatusCode = StatusCode.ProductNotFound;
